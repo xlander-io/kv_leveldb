@@ -91,13 +91,13 @@ func TestSnapshot(t *testing.T) {
 		key3_result, _ := snap1.Get([]byte("key3"), nil)
 
 		if v := []byte("content1"); !bytes.Equal(key1_result, v) {
-			t.Errorf("key1_result snap1: expect [%s], but get [%s]", v, string(key1_result))
+			t.Errorf("key1_result snap1: expect [%s], but get [%s]", v, key1_result)
 		}
 		if v := []byte("content2"); !bytes.Equal(key2_result, v) {
-			t.Errorf("key1_result snap1: expect [%s], but get [%s]", v, string(key2_result))
+			t.Errorf("key1_result snap1: expect [%s], but get [%s]", v, key2_result)
 		}
 		if v := []byte("content3"); !bytes.Equal(key3_result, v) {
-			t.Errorf("key1_result snap1: expect [%s], but get [%s]", v, string(key3_result))
+			t.Errorf("key1_result snap1: expect [%s], but get [%s]", v, key3_result)
 		}
 	}
 
@@ -112,13 +112,13 @@ func TestSnapshot(t *testing.T) {
 		key3_result, _ := db.Get([]byte("key3"), nil)
 
 		if v := []byte("new content1"); !bytes.Equal(key1_result, v) {
-			t.Errorf("key1_result new: expect [%s], but get [%s]", v, string(key1_result))
+			t.Errorf("key1_result new: expect [%s], but get [%s]", v, key1_result)
 		}
 		if v := []byte("new content2"); !bytes.Equal(key2_result, v) {
-			t.Errorf("key1_result new: expect [%s], but get [%s]", v, string(key2_result))
+			t.Errorf("key1_result new: expect [%s], but get [%s]", v, key2_result)
 		}
 		if v := []byte("new content3"); !bytes.Equal(key3_result, v) {
-			t.Errorf("key1_result new: expect [%s], but get [%s]", v, string(key3_result))
+			t.Errorf("key1_result new: expect [%s], but get [%s]", v, key3_result)
 		}
 	}
 
@@ -129,13 +129,13 @@ func TestSnapshot(t *testing.T) {
 		key3_result, _ := snap1.Get([]byte("key3"), nil)
 
 		if v := []byte("content1"); !bytes.Equal(key1_result, v) {
-			t.Errorf("key1_result snap1: expect [%s], but get [%s]", v, string(key1_result))
+			t.Errorf("key1_result snap1: expect [%s], but get [%s]", v, key1_result)
 		}
 		if v := []byte("content2"); !bytes.Equal(key2_result, v) {
-			t.Errorf("key1_result snap1: expect [%s], but get [%s]", v, string(key2_result))
+			t.Errorf("key1_result snap1: expect [%s], but get [%s]", v, key2_result)
 		}
 		if v := []byte("content3"); !bytes.Equal(key3_result, v) {
-			t.Errorf("key1_result snap1: expect [%s], but get [%s]", v, string(key3_result))
+			t.Errorf("key1_result snap1: expect [%s], but get [%s]", v, key3_result)
 		}
 	}
 
@@ -151,13 +151,13 @@ func TestSnapshot(t *testing.T) {
 			key3_result, _ := snap2.Get([]byte("key3"), nil)
 
 			if v := []byte("new content1"); !bytes.Equal(key1_result, v) {
-				t.Errorf("key1_result snap2: expect [%s], but get [%s]", v, string(key1_result))
+				t.Errorf("key1_result snap2: expect [%s], but get [%s]", v, key1_result)
 			}
 			if v := []byte("new content2"); !bytes.Equal(key2_result, v) {
-				t.Errorf("key1_result snap2: expect [%s], but get [%s]", v, string(key2_result))
+				t.Errorf("key1_result snap2: expect [%s], but get [%s]", v, key2_result)
 			}
 			if v := []byte("new content3"); !bytes.Equal(key3_result, v) {
-				t.Errorf("key1_result snap2: expect [%s], but get [%s]", v, string(key3_result))
+				t.Errorf("key1_result snap2: expect [%s], but get [%s]", v, key3_result)
 			}
 		}
 		// 测试在第二次snapshot之后，第一次的snapshot是否正常
@@ -167,13 +167,13 @@ func TestSnapshot(t *testing.T) {
 			key3_result, _ := snap1.Get([]byte("key3"), nil)
 
 			if v := []byte("content1"); !bytes.Equal(key1_result, v) {
-				t.Errorf("key1_result snap1: expect [%s], but get [%s]", v, string(key1_result))
+				t.Errorf("key1_result snap1: expect [%s], but get [%s]", v, key1_result)
 			}
 			if v := []byte("content2"); !bytes.Equal(key2_result, v) {
-				t.Errorf("key1_result snap1: expect [%s], but get [%s]", v, string(key2_result))
+				t.Errorf("key1_result snap1: expect [%s], but get [%s]", v, key2_result)
 			}
 			if v := []byte("content3"); !bytes.Equal(key3_result, v) {
-				t.Errorf("key1_result snap1: expect [%s], but get [%s]", v, string(key3_result))
+				t.Errorf("key1_result snap1: expect [%s], but get [%s]", v, key3_result)
 			}
 		}
 		// 测试在两次snapshot之后，直接访问db的数据是否访问的最新的数据
@@ -183,13 +183,13 @@ func TestSnapshot(t *testing.T) {
 			key3_result, _ := db.Get([]byte("key3"), nil)
 
 			if v := []byte("new content1"); !bytes.Equal(key1_result, v) {
-				t.Errorf("key1_result new: expect [%s], but get [%s]", v, string(key1_result))
+				t.Errorf("key1_result new: expect [%s], but get [%s]", v, key1_result)
 			}
 			if v := []byte("new content2"); !bytes.Equal(key2_result, v) {
-				t.Errorf("key1_result new: expect [%s], but get [%s]", v, string(key2_result))
+				t.Errorf("key1_result new: expect [%s], but get [%s]", v, key2_result)
 			}
 			if v := []byte("new content3"); !bytes.Equal(key3_result, v) {
-				t.Errorf("key1_result new: expect [%s], but get [%s]", v, string(key3_result))
+				t.Errorf("key1_result new: expect [%s], but get [%s]", v, key3_result)
 			}
 		}
 	}
