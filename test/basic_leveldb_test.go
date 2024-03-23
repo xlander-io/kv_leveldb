@@ -195,6 +195,93 @@ func TestSnapshot(t *testing.T) {
 	}
 }
 
+func TestTransaction(t *testing.T) {
+	db := prepareTestLevelDB()
+	defer db.Close()
+	prepareDefaultData(db)
+
+	// 竟然可以通过transaction获得当前数据库的现有数据
+	{
+		transaction, err := db.OpenTransaction()
+		handleError(err, t)
+
+		key1_result, err := transaction.Get([]byte("key1"), nil)
+		handleError(err, t)
+		if !bytes.Equal([]byte("content1"), key1_result) {
+			t.Errorf("expect [%s], but get [%s]", "", key1_result)
+		}
+
+		key2_exist, err := transaction.Has([]byte("key2"), nil)
+		handleError(err, t)
+		if !key2_exist {
+			t.Error("key2 should exists!")
+		}
+
+		transaction.Commit() // Transaction每次Open之后，都需要Commit或者Discard
+	}
+
+	K := []byte("test key1")
+	V := []byte("test value1")
+
+	// 测试事务: 正常Commit
+	{
+		transaction, err := db.OpenTransaction()
+		handleError(err, t)
+
+		err = transaction.Put(K, V, nil)
+		handleError(err, t)
+
+		ok, err := db.Has(K, nil)
+		handleError(err, t)
+		if ok {
+			t.Errorf("shoud not has key [%s]!", K)
+		}
+
+		err = transaction.Commit()
+		handleError(err, t)
+
+		v, err := db.Get(K, nil)
+		handleError(err, t)
+
+		if !bytes.Equal(V, v) {
+			t.Errorf("expect %s, but [%s]", V, v)
+		}
+	}
+	// 测试事务: 异常Discard
+	{
+		transaction, err := db.OpenTransaction()
+		handleError(err, t)
+
+		err = transaction.Delete(K, nil)
+		handleError(err, t)
+
+		{
+			ok, err := db.Has(K, nil)
+			handleError(err, t)
+			if !ok {
+				t.Errorf("expect has key [%s]!", K)
+			}
+		}
+
+		transaction.Discard()
+
+		{
+			ok, err := db.Has(K, nil)
+			handleError(err, t)
+			if !ok {
+				t.Errorf("expect has key [%s]!", K)
+			}
+		}
+	}
+
+}
+
+func handleError(err error, t *testing.T) {
+	if err != nil {
+		t.Errorf("found err: %v", err)
+	}
+}
+
 func prepareTestLevelDB() *leveldb.DB {
 	file_path := "./db"
 
