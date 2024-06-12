@@ -4,7 +4,7 @@ import (
 	"github.com/syndtr/goleveldb/leveldb"
 	"github.com/syndtr/goleveldb/leveldb/opt"
 	"github.com/syndtr/goleveldb/leveldb/util"
-	"github.com/xlander-io/kv/kv_interface"
+	"github.com/xlander-io/kv_interface"
 )
 
 var Default_W_OP_TRUE = &opt.WriteOptions{
