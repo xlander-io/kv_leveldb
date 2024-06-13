@@ -9,4 +9,4 @@ require (
 
 require github.com/golang/snappy v0.0.4 // indirect
 
-replace github.com/xlander-io/kv => ../kv.git
+// replace github.com/xlander-io/kv => ../kv.git

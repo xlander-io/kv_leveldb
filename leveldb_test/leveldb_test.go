@@ -103,7 +103,7 @@ func TestSnapshot(t *testing.T) {
 			t.Fatal(err)
 		}
 		if !bytes.Equal(got, []byte(v)) {
-			t.Fatalf("Unexpected value want: %v, got %v", v, got)
+			t.Fatalf("Unexpected value: %s, expect: %s", got, v)
 		}
 	}
 	/////// init k-v finished/////
@@ -131,7 +131,7 @@ func TestSnapshot(t *testing.T) {
 			t.Fatal(err)
 		}
 		if !bytes.Equal(got, []byte(v)) {
-			t.Fatalf("Unexpected value want: %v, got %v", v, got)
+			t.Fatalf("Unexpected value: %s, expect: %s", got, v)
 		}
 	}
 
