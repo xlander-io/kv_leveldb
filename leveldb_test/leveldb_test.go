@@ -11,7 +11,7 @@ import (
 )
 
 func NewDB() *leveldb.DB {
-	db_path := "./db"
+	db_path := "./leveldb_test.db"
 	os.RemoveAll(db_path)
 	db, err := leveldb.OpenFile(db_path, nil)
 	if err != nil {

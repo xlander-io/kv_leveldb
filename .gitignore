@@ -28,3 +28,5 @@ default_dev
  # Dependency directories (remove the comment below to include it)
  
 basic_test.db
+kv_leveldb_test.db
+leveldb_test/leveldb_test.db
