@@ -11,7 +11,7 @@ import (
 )
 
 func newDB() kv_interface.KVDB {
-	const db_path = "./basic_test.db"
+	const db_path = "./kv_leveldb_test.db"
 	os.RemoveAll(db_path)
 	kvdb, err := kv_leveldb.NewDB(db_path)
 	if err != nil {
