@@ -4,9 +4,7 @@ go 1.22.1
 
 require (
 	github.com/syndtr/goleveldb v1.0.0
-	github.com/xlander-io/kv v0.0.0-20240612131354-faf15072c970
+	github.com/xlander-io/kv v0.0.0-20240624032346-c8c126e56de9
 )
 
-require github.com/golang/snappy v0.0.4 // indirect
-
-// replace github.com/xlander-io/kv => ../kv.git
+require github.com/golang/snappy v0.0.0-20180518054509-2e65f85255db // indirect
