@@ -4,7 +4,7 @@ import (
 	"github.com/syndtr/goleveldb/leveldb"
 	"github.com/syndtr/goleveldb/leveldb/opt"
 	"github.com/syndtr/goleveldb/leveldb/util"
-	kv_interface "github.com/xlander-io/kv"
+	"github.com/xlander-io/kv"
 )
 
 var Default_W_OP_TRUE = &opt.WriteOptions{
@@ -19,7 +19,7 @@ type KV_LEVELDB struct {
 	leveldb *leveldb.DB
 }
 
-func NewDB(db_path string) (kv_interface.KVDB, error) {
+func NewDB(db_path string) (kv.KVDB, error) {
 	level_db_, err := leveldb.OpenFile(db_path, nil)
 	if err != nil {
 		return nil, err
@@ -52,7 +52,7 @@ func (db *KV_LEVELDB) Get(key []byte) (value []byte, err error) {
 	return db.leveldb.Get(key, nil)
 }
 
-func (db *KV_LEVELDB) WriteBatch(batch *kv_interface.Batch, sync bool) error {
+func (db *KV_LEVELDB) WriteBatch(batch *kv.Batch, sync bool) error {
 	leveldb_batch := new(leveldb.Batch)
 	batch.Loop(func(key, val []byte) {
 		leveldb_batch.Put(key, val)
@@ -65,6 +65,6 @@ func (db *KV_LEVELDB) WriteBatch(batch *kv_interface.Batch, sync bool) error {
 	}
 }
 
-func (db *KV_LEVELDB) NewIterator(start []byte, limit []byte) kv_interface.Iterator {
+func (db *KV_LEVELDB) NewIterator(start []byte, limit []byte) kv.Iterator {
 	return db.leveldb.NewIterator(&util.Range{Start: start, Limit: limit}, nil)
 }
