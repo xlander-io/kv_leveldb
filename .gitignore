@@ -25,7 +25,7 @@ default_dev
 *.sw?
 
  
- # Dependency directories (remove the comment below to include it)
+# Dependency directories (remove the comment below to include it)
  
 basic_test.db
 kv_leveldb_test.db
