@@ -4,7 +4,7 @@ go 1.22.1
 
 require (
 	github.com/syndtr/goleveldb v1.0.0
-	github.com/xlander-io/kv v0.0.0-20240703034557-55f6c80848c6
+	github.com/xlander-io/kv v0.0.0-20240703070149-408f10396aaa
 
 )
 

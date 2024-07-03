@@ -55,7 +55,11 @@ func (db *KV_LEVELDB) Get(key []byte) (value []byte, err error) {
 func (db *KV_LEVELDB) WriteBatch(batch *kv.Batch, sync bool) error {
 	leveldb_batch := new(leveldb.Batch)
 	batch.Loop(func(key, val []byte) {
-		leveldb_batch.Put(key, val)
+		if val == nil {
+			leveldb_batch.Delete(key)
+		} else {
+			leveldb_batch.Put(key, val)
+		}
 	})
 
 	if sync {
